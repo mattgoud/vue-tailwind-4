@@ -21,6 +21,11 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
+  build: {
+    // puik-theme ships `@media (max-width: var(--screen-xs))`, which lightningcss
+    // (Vite 8 default CSS minifier) rejects as an invalid media query.
+    cssMinify: 'esbuild',
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
